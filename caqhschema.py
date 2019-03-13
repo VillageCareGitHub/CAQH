@@ -12,8 +12,8 @@ initConfig = configparser.ConfigParser()
 initConfig.read("AWS_List.config") 
 
 # Database connection to redshift
-conn=psycopg2.connect(dbname= 'dev', host='vcs-dw-01.cjpkvjykaaiu.us-east-1.redshift.amazonaws.com', 
-port= '5439', user= initConfig.get('profile prod', 'dbuser'), password= initConfig.get('profile prod', 'dbpwd'))
+conn=psycopg2.connect(dbname= 'dev', host=initConfig.get('profile prod', 'host'), 
+port= initConfig.get('profile prod', 'port'), user= initConfig.get('profile prod', 'dbuser'), password= initConfig.get('profile prod', 'dbpwd'))
 
 # Drop table if exist
 SQL=f""" DROP TABLE IF EXISTS {DBSCHEMA}caqh_providers"""
